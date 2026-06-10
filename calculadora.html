@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Desperdício — ODS 12</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/calculadora.css" />
+</head>
+<body>
+
+  <!-- ======== NÃO MODIFICAR ======== -->
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="navbar-logo">
+          <img src="logo.png" alt="Logo do site" />
+        </a>
+        <ul class="navbar-nav" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="guia.html">Guia</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="jogo.html">Jogo</a></li>
+          <li><a href="calculadora.html" class="active">Calculadora</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+        <button class="navbar-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <!-- ======== FIM NAVBAR ======== -->
+
+  <main>
+
+    <!-- HERO DA CALCULADORA -->
+    <section class="calc-hero">
+      <div class="container">
+        <span class="calc-eyebrow">// Ferramenta interativa</span>
+        <h1 class="calc-titulo">Calculadora de<br>Desperdício</h1>
+        <p class="calc-desc">
+          Descubra o impacto real do alimento que você descarta: dinheiro perdido,
+          água desperdiçada e quantas pessoas poderiam ser alimentadas.
+        </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO CALCULADORA -->
+    <section class="section section-beige">
+      <div class="container">
+        <div class="calc-layout">
+
+          <!-- FORMULÁRIO -->
+          <div class="calc-form-box">
+            <h2 class="calc-form-titulo">O que foi desperdiçado?</h2>
+            <p class="calc-form-desc">Informe o tipo de alimento e a quantidade desperdiçada no mês.</p>
+
+            <div class="calc-form">
+
+              <!-- Seleção do alimento -->
+              <div class="campo-grupo">
+                <label class="campo-label" for="tipo-alimento">
+                  <span class="campo-icone">🥦</span> Tipo de alimento
+                </label>
+                <div class="select-wrapper">
+                  <select id="tipo-alimento" class="campo-select">
+                    <option value="">— Selecione um alimento —</option>
+                    <option value="arroz">🌾 Arroz</option>
+                    <option value="pao">🍞 Pão / Trigo</option>
+                    <option value="carne">🥩 Carne bovina</option>
+                    <option value="frango">🍗 Frango</option>
+                    <option value="legumes">🥕 Legumes e Verduras</option>
+                    <option value="frutas">🍎 Frutas</option>
+                    <option value="leite">🥛 Laticínios (leite/queijo)</option>
+                    <option value="feijao">🫘 Feijão / Leguminosas</option>
+                    <option value="ovos">🥚 Ovos</option>
+                    <option value="massas">🍝 Massas e Pão</option>
+                  </select>
+                  <span class="select-arrow">▾</span>
+                </div>
+              </div>
+
+              <!-- Quantidade -->
+              <div class="campo-grupo">
+                <label class="campo-label" for="quantidade-kg">
+                  <span class="campo-icone">⚖️</span> Quantidade desperdiçada (kg/mês)
+                </label>
+                <div class="input-wrapper">
+                  <input
+                    type="number"
+                    id="quantidade-kg"
+                    class="campo-input"
+                    placeholder="Ex: 2.5"
+                    min="0.1"
+                    max="999"
+                    step="0.1"
+                  />
+                  <span class="input-sufixo">kg</span>
+                </div>
+              </div>
+
+              <!-- Botão calcular -->
+              <button class="btn-calcular" onclick="calcular()">
+                <span class="btn-calcular-texto">Calcular impacto</span>
+                <span class="btn-calcular-icone">→</span>
+              </button>
+
+              <!-- Mensagem de erro -->
+              <p id="erro-msg" class="erro-msg" aria-live="polite"></p>
+
+            </div>
+
+            <!-- Nota informativa -->
+            <p class="calc-nota">
+              * Valores baseados em médias do IBGE, FAO e literatura científica sobre
+              pegada hídrica dos alimentos.
+            </p>
+          </div>
+
+          <!-- RESULTADOS -->
+          <div class="calc-resultados" id="resultado" aria-live="polite">
+
+            <!-- Estado inicial (antes de calcular) -->
+            <div class="resultado-vazio" id="resultado-vazio">
+              <div class="vazio-icone">🌱</div>
+              <p class="vazio-texto">Preencha os campos ao lado<br>e clique em calcular.</p>
+            </div>
+
+            <!-- Cards de resultado (hidden inicialmente) -->
+            <div class="resultado-cards" id="resultado-cards" hidden>
+
+              <div class="resultado-header">
+                <span class="resultado-alimento" id="res-alimento-label">—</span>
+                <span class="resultado-quantidade" id="res-quantidade-label">—</span>
+              </div>
+
+              <!-- Card: Dinheiro -->
+              <div class="res-card" id="card-dinheiro">
+                <div class="res-card-icone">💸</div>
+                <div class="res-card-corpo">
+                  <span class="res-card-label">Dinheiro perdido</span>
+                  <span class="res-card-valor" id="res-dinheiro">—</span>
+                  <span class="res-card-detalhe" id="res-dinheiro-detalhe">—</span>
+                </div>
+              </div>
+
+              <!-- Card: Água -->
+              <div class="res-card" id="card-agua">
+                <div class="res-card-icone">💧</div>
+                <div class="res-card-corpo">
+                  <span class="res-card-label">Água desperdiçada</span>
+                  <span class="res-card-valor" id="res-agua">—</span>
+                  <span class="res-card-detalhe" id="res-agua-detalhe">—</span>
+                </div>
+              </div>
+
+              <!-- Card: Pessoas -->
+              <div class="res-card" id="card-pessoas">
+                <div class="res-card-icone">👥</div>
+                <div class="res-card-corpo">
+                  <span class="res-card-label">Pessoas que poderiam ser alimentadas</span>
+                  <span class="res-card-valor" id="res-pessoas">—</span>
+                  <span class="res-card-detalhe" id="res-pessoas-detalhe">—</span>
+                </div>
+              </div>
+
+              <!-- Barra de nível de impacto -->
+              <div class="impacto-nivel" id="impacto-nivel">
+                <span class="impacto-label">Nível de impacto</span>
+                <div class="impacto-barra-track">
+                  <div class="impacto-barra-fill" id="impacto-barra"></div>
+                </div>
+                <span class="impacto-texto" id="impacto-texto">—</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO INFORMATIVA (dados reais) -->
+    <section class="section section-green">
+      <div class="container">
+        <div class="info-layout">
+          <div>
+            <span class="calc-eyebrow" style="color:rgba(255,255,255,0.6);">// Você sabia?</span>
+            <h2 style="color:#fff; font-family: var(--font-display); font-size: clamp(1.8rem,3vw,2.5rem); margin-top:0.5rem;">
+              O Brasil desperdiça<br>41 mil toneladas de<br>alimento por dia.
+            </h2>
+          </div>
+          <div class="info-stats">
+            <div class="info-stat">
+              <span class="info-stat-num">1/3</span>
+              <span class="info-stat-desc">de toda comida produzida no mundo é desperdiçada</span>
+            </div>
+            <div class="info-stat">
+              <span class="info-stat-num">8%</span>
+              <span class="info-stat-desc">das emissões globais de CO₂ vêm do desperdício alimentar</span>
+            </div>
+            <div class="info-stat">
+              <span class="info-stat-num">R$61 bi</span>
+              <span class="info-stat-desc">perdidos por ano em alimentos jogados fora no Brasil</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======== NÃO MODIFICAR ======== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="stats-bar" style="margin-bottom: var(--space-xl); border-radius: var(--radius-md);">
+        <div class="container">
+          <div class="stat-item">
+            <p class="stat-label">Alimentos desperdiçados desde que você abriu esta página</p>
+            <p class="stat-number" id="statFood">0<span class="stat-unit">kg</span></p>
+          </div>
+          <div class="stat-item">
+            <p class="stat-label">Água residual não tratada liberada</p>
+            <p class="stat-number" id="statWater">0<span class="stat-unit">L</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-top">
+        <div class="footer-col">
+          <p class="brand-name">ODS 12</p>
+          <p class="mt-sm">Consumo e Produção Responsáveis</p>
+          <ul class="mt-md">
+            <li><a href="index.html">Navegação</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="guia.html">Guia</a></li>
+            <li><a href="jogo.html">Jogo</a></li>
+            <li><a href="mapa.html">Mapa</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Recursos</h4>
+          <ul>
+            <li><a href="https://brasil.un.org/pt-br/sdgs/12" target="_blank" rel="noopener">Relatórios ONU</a></li>
+            <li><a href="https://sdgs.un.org/goals/goal12" target="_blank" rel="noopener">Agenda 2030</a></li>
+            <li><a href="#">Indicadores</a></li>
+            <li><a href="#">Publicações</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="https://www.gov.br" target="_blank" rel="noopener">Governo Federal</a></li>
+            <li><a href="https://www.mma.gov.br" target="_blank" rel="noopener">Ministério do Meio Ambiente</a></li>
+            <li><a href="https://brasil.un.org" target="_blank" rel="noopener">ONU</a></li>
+            <li><a href="https://www.ipea.gov.br" target="_blank" rel="noopener">IPEA</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>ODS 12 — <strong>Consumo e produção responsáveis</strong></span>
+        <span>© 2026 · <a href="#">Projeto Site - ODS 12</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/calculadora.js"></script>
+  <script>
+    // ── Menu mobile ──────────────────────────────────────
+    const toggle = document.getElementById('navToggle');
+    const menu   = document.getElementById('navMenu');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Fecha o menu ao clicar em um link
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      });
+    });
+
+    // ── Contadores das métricas (footer) ────────────────────────────
+    const RATE_FOOD  = 10000;  // kg por segundo
+    const RATE_WATER = 12152000;    // L por segundo
+
+    const elFood  = document.getElementById('statFood');
+    const elWater = document.getElementById('statWater');
+
+    let startTime = null;
+
+    function updateCounters(ts) {
+      if (!startTime) startTime = ts;
+      const elapsed = (ts - startTime) / 1000 / 60; // minutos 
+
+      const food  = (elapsed * RATE_FOOD).toFixed(3);
+      const water = Math.floor(elapsed * RATE_WATER).toLocaleString('pt-BR');
+
+      elFood.innerHTML  = food  + '<span class="stat-unit">kg</span>';
+      elWater.innerHTML = water + '<span class="stat-unit">L</span>';
+
+      requestAnimationFrame(updateCounters);
+    }
+
+    requestAnimationFrame(updateCounters);
+  </script>
+
+</body>
+</html>

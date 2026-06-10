@@ -1,0 +1,73 @@
+/* =============================================
+   MAPA.CSS — estilos isolados da página mapa
+   ============================================= */
+
+/* Hero do mapa */
+.hero-mapa {
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg);
+  padding-block: var(--space-2xl);
+}
+
+.hero-content-mapa {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Container do mapa Leaflet */
+#mapa {
+  height: 560px;
+  width: 88%;
+  margin: 0 auto var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+/* Popups do Leaflet */
+.popup-conteudo h3 {
+  margin: 0 0 6px 0;
+  color: var(--color-green-dark);
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.popup-conteudo p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
+  max-width: none;
+}
+
+/* Botão de localização */
+.btn-localizar {
+  background-color: white;
+  border: 2px solid #bbb;
+  border-radius: var(--radius-sm);
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition);
+}
+
+.btn-localizar:hover {
+  background-color: #f4f4f4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #mapa {
+    width: 96%;
+    height: 420px;
+  }
+}

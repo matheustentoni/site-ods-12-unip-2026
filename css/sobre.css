@@ -1,0 +1,217 @@
+/* =============================================
+   SOBRE.CSS — estilos isolados em .sobre-page
+   Não conflita com global.css
+   ============================================= */
+
+/* ── Hero da página Sobre ─────────────────────── */
+.sobre-hero {
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-bg), #dfe5d0);
+  padding-block: var(--space-2xl);
+}
+
+.sobre-hero .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.sobre-badge {
+  background: var(--color-green);
+  color: white;
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sobre-hero h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  line-height: 1;
+  color: var(--color-green);
+  font-weight: 700;
+}
+
+.sobre-hero h1 span { display: block; }
+
+.sobre-hero p {
+  max-width: 55ch;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* ── Seções genéricas ─────────────────────────── */
+.sobre-section {
+  padding-block: var(--space-2xl);
+}
+
+.sobre-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--color-green);
+  margin-bottom: var(--space-lg);
+  font-weight: 700;
+}
+
+.sobre-section p {
+  max-width: 70ch;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+/* ── Box (Sobre o Projeto) ────────────────────── */
+.sobre-bg {
+  background:
+    linear-gradient(rgba(234,232,224,0.90), rgba(234,232,224,0.90)),
+    url('../img/sustentabilidade.jpg.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.sobre-box {
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  padding: var(--space-xl);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Destaque verde (Jogo) ────────────────────── */
+.sobre-destaque {
+  background: linear-gradient(135deg, var(--color-green), var(--color-green-light));
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
+  padding: var(--space-xl);
+  border-radius: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.sobre-destaque h2 { color: white; }
+
+.sobre-destaque p {
+  max-width: 55ch;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  margin: 0;
+}
+
+/* ── Calculadora box ──────────────────────────── */
+.sobre-calc-box {
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  padding: var(--space-xl);
+  border-radius: 2rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* ── Integrantes ──────────────────────────────── */
+.sobre-integrantes {
+  padding-block: var(--space-2xl);
+  background: linear-gradient(135deg, var(--color-green), var(--color-green-light));
+}
+
+.sobre-integrantes h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: white;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  font-weight: 700;
+}
+
+.sobre-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-lg);
+}
+
+.sobre-card {
+  background: rgba(255,255,255,0.13);
+  border-radius: 1.5rem;
+  padding: var(--space-lg);
+  text-align: center;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.sobre-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sobre-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+}
+
+.sobre-card img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: var(--space-md);
+  border: 4px solid rgba(255,255,255,0.35);
+  transition: transform 0.3s ease;
+}
+
+.sobre-card:hover img { transform: scale(1.08) rotate(2deg); }
+
+.sobre-card h3 {
+  font-family: var(--font-display);
+  color: white;
+  font-size: 1.15rem;
+  margin-bottom: var(--space-sm);
+}
+
+.sobre-card span {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.9rem;
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 768px) {
+  .sobre-hero h1 { font-size: 2.5rem; }
+  .sobre-box,
+  .sobre-calc-box,
+  .sobre-destaque { padding: var(--space-lg) var(--space-md); border-radius: 1.25rem; }
+  .sobre-card { padding: var(--space-md); }
+  .sobre-card img { width: 100px; height: 100px; }
+}

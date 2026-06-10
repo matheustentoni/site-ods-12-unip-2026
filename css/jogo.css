@@ -1,0 +1,264 @@
+/* =============================================
+   JOGO.CSS — estilos isolados dentro de #jogo-wrapper
+   Não modifica body, header, h1 globais para não
+   conflitar com global.css
+   ============================================= */
+
+/* Wrapper principal do jogo — tudo fica aqui dentro */
+#jogo-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 1rem 3rem;
+    user-select: none;
+    overflow-x: hidden;
+    background-color: var(--color-bg);
+}
+
+/* Cabeçalho interno do jogo */
+#jogo-wrapper .jogo-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+#jogo-wrapper .jogo-titulo {
+    font-family: var(--font-display);
+    color: var(--color-green-dark);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0 0 1rem;
+    font-weight: 700;
+}
+
+#placar {
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-green);
+    background: var(--color-white);
+    padding: 10px 25px;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+}
+
+/* Área onde o lixo atual aparece */
+#zona-lixo {
+    width: 100%;
+    height: clamp(140px, 25vh, 280px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.lixo-item {
+     width: clamp(100px, 20vw, 240px);
+    height: clamp(100px, 20vw, 240px);
+    cursor: grab;
+    z-index: 100;
+    touch-action: none; /* Melhora a resposta ao arrastar no celular */
+}
+
+.lixo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* Container das lixeiras */
+#container-lixeiras {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas no PC */
+    gap: 15px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+    #container-lixeiras { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+    #container-lixeiras { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+
+.lixeira {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: var(--radius-md);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    border: 3px dashed transparent;
+    cursor: pointer; /* Muda o mouse para a mãozinha no PC */
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Efeito rápido de "apertar" quando o usuário tocar na lixeira no celular */
+.lixeira:active {
+    transform: scale(0.95);
+    filter: brightness(0.8);
+}
+
+.lixeira.drag-over {
+    border-color: var(--color-green);
+    background: rgba(255, 255, 255, 0.95);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.lixeira img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    pointer-events: none;
+}
+
+#mensagem {
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+}
+/* ── Tela de vitória ──────────────────────────────── */
+#vitoria-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(74, 87, 24, 0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: var(--radius-md);
+}
+
+#vitoria-overlay.visivel {
+    opacity: 1;
+}
+
+#vitoria-card {
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+    transform: translateY(20px);
+    transition: transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#vitoria-overlay.visivel #vitoria-card {
+    transform: translateY(0);
+}
+
+#vitoria-emoji {
+    font-size: 4rem;
+    line-height: 1;
+    animation: troféu-pulse 1s ease infinite alternate;
+}
+
+@keyframes troféu-pulse {
+    from { transform: scale(1);   }
+    to   { transform: scale(1.12); }
+}
+
+#vitoria-titulo {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-green-dark);
+    margin: 0;
+}
+
+#vitoria-subtitulo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-green);
+    margin: 0;
+    max-width: unset;
+}
+
+#vitoria-pontos {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: unset;
+}
+
+#vitoria-msg {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: unset;
+}
+
+#btn-jogar-novamente {
+    margin-top: 0.5rem;
+    background-color: var(--color-green);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 0.7rem 2rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+#btn-jogar-novamente:hover {
+    background-color: var(--color-green-dark);
+    transform: scale(1.03);
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (Onde a mágica da responsividade acontece)
+   ========================================================================== */
+ 
+/* Para Tablets (Telas médias de até 900px de largura) */
+@media (max-width: 900px) {
+    #container-lixeiras {
+        grid-template-columns: repeat(3, 1fr); /* Passa para 3 colunas */
+        gap: 12px;
+    }
+}
+ 
+/* Para Celulares (Telas pequenas de até 600px de largura) */
+@media (max-width: 600px) {
+    #container-lixeiras {
+        grid-template-columns: repeat(2, 1fr); /* Passa para 2 colunas */
+        gap: 10px;
+    }
+    
+    .lixeira {
+        padding: 8px;
+        border-radius: 12px;
+    }
+}
+ 
+/* Para Celulares Muito Pequenos (Telas de até 360px de largura) */
+@media (max-width: 360px) {
+    #container-lixeiras {
+        gap: 6px;
+    }
+}

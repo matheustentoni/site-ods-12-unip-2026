@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoTreino: Jogo da Reciclagem</title>
+  <link rel="stylesheet" href="css/jogo.css">
+  <link rel="stylesheet" href="css/global.css" />
+</head>
+<body>
+
+  <!-- ======== NÃO MODIFICAR DAQUI PARA BAIXO ========== -->
+  <!-- ===================== NAVBAR ===================== -->
+  <header>
+    <nav class="navbar">
+      <div class="container">
+
+        <!-- Logo -->
+        <a href="index.html" class="navbar-logo">
+          
+          <img src="logo.png" alt="Logo do site" />
+          
+        </a>
+
+        <!-- Links de navegação -->
+        <ul class="navbar-nav" id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="guia.html">Guia</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="jogo.html" class="active">Jogo</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+
+        <!-- Botão hamburguer (mobile) -->
+        <button class="navbar-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ======== PODE MODIFICAR A PARTIR DAQUI ========== -->
+
+    <!-- Wrapper isolado do jogo — não interfere no layout global -->
+    <div id="jogo-wrapper">
+
+      <div class="jogo-header">
+        <br>
+        <h1 class="jogo-titulo">EcoTreino: Jogo da Reciclagem</h1>
+        <br>
+        <div id="placar">Pontos: <span id="pontos">0</span></div>
+      </div>
+
+      <div id="mensagem">Arraste o lixo para a lixeira correta!</div>
+
+      <div id="zona-lixo">
+        <div id="lixo-atual"></div>
+      </div>
+
+      <div id="container-lixeiras">
+        <div class="lixeira" data-aceita="papel"><img src="imgs/Lixeira de papel.png" alt="Papel"></div>
+        <div class="lixeira" data-aceita="plastico"><img src="imgs/Lixeira de plástico.png" alt="Plástico"></div>
+        <div class="lixeira" data-aceita="vidro"><img src="imgs/Lixeira de vidro.png" alt="Vidro"></div>
+        <div class="lixeira" data-aceita="metal"><img src="imgs/Lixeira de metal.png" alt="Metal"></div>
+        <div class="lixeira" data-aceita="organico"><img src="imgs/Lixeira orgânica.png" alt="Orgânico"></div>
+        <div class="lixeira" data-aceita="nao-reciclavel"><img src="imgs/Lixeira não reciclável.png" alt="Não Reciclável"></div>
+        <div class="lixeira" data-aceita="perigoso"><img src="imgs/Lixeira Resíduos perigosos.png" alt="Perigosos"></div>
+        <div class="lixeira" data-aceita="pilhas"><img src="imgs/Lixeira baterias e pilhas.png" alt="Pilhas e Baterias"></div>
+      </div>
+
+
+    </div>
+    <!-- ======== FIM DO JOGO ========== -->
+
+    <script src="js/jogo.js"></script>
+  
+<!-- ======== NÃO MODIFICAR DAQUI PARA BAIXO ========== -->
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <!-- Métricas em destaque -->
+      <div class="stats-bar" style="margin-bottom: var(--space-xl); border-radius: var(--radius-md);">
+        <div class="container">
+
+          <div class="stat-item">
+            <p class="stat-label">Alimentos desperdiçados desde que você abriu esta página</p>
+            <p class="stat-number" id="statFood">0<span class="stat-unit">kg</span></p>
+          </div>
+
+          <div class="stat-item">
+            <p class="stat-label">Água tratada desperdiçada</p>
+            <p class="stat-number" id="statWater">0<span class="stat-unit">L</span></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Colunas de links -->
+      <div class="footer-top">
+
+        <!-- Coluna 1: Marca / navegação principal -->
+        <div class="footer-col">
+          <p class="brand-name">Projeto ODS 12</p>
+          <p class="mt-sm">Consumo e Produção Sustentáveis</p>
+          <ul class="mt-md">
+            <li><a href="index.html">Navegação</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="calculadora.html">Calculadora</a></li>
+            <li><a href="jogo.html" class="active">Jogo</a></li>
+            <li><a href="mapa.html">Mapa</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 2: Recursos -->
+        <div class="footer-col">
+          <h4>Recursos</h4>
+          <ul>
+            <li><a href="https://brasil.un.org/pt-br/301975-relat%C3%B3rio-anual-das-na%C3%A7%C3%B5es-unidas-2025">Relatórios ONU</a></li>
+            <li><a href="https://brasil.un.org/pt-br/91863-agenda-2030-para-o-desenvolvimento-sustent%C3%A1vel">Agenda 2030</a></li>
+            <li><a href="https://www.un.org/sustainabledevelopment/sustainable-consumption-production/">Objetivos</a></li>
+            <li><a href="https://brasil.un.org/pt-br/264460-%C3%ADndice-de-desperd%C3%ADcio-de-alimentos-2024">Indicadores</a></li>
+            <li><a href="https://brasil.un.org/pt-br/resources/publications">Publicações</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 3: Institucional -->
+        <div class="footer-col">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="https://www.gov.br/agricultura/pt-br/assuntos/sustentabilidade/perdas-e-desperdicio-de-alimentos">Governo Federal</a></li>
+            <li><a href="https://antigo.mma.gov.br/responsabilidade-socioambiental/producao-e-consumo-sustentavel.html">Ministério do Meio Ambiente</a></li>
+            <li><a href="https://brasil.un.org/pt-br/sdgs/12">ONU</a></li>
+            <li><a href="https://www.ipea.gov.br/ods/ods12.html">IPEA</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Rodapé inferior -->
+      <div class="footer-bottom">
+        <span>ODS 12 — <strong>Consumo e produção responsáveis</strong></span>
+        <span>© 2026 · <a href="#">Projeto Site - ODS 12</a></span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script>
+    // ── Menu mobile ──────────────────────────────────────
+    const toggle = document.getElementById('navToggle');
+    const menu   = document.getElementById('navMenu');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Fecha o menu ao clicar em um link
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      });
+    });
+
+    // ── Contadores das métricas (footer) ────────────────────────────
+    const RATE_FOOD  = 10000;  // kg por segundo
+    const RATE_WATER = 12152000;    // L por segundo
+
+    const elFood  = document.getElementById('statFood');
+    const elWater = document.getElementById('statWater');
+
+    let startTime = null;
+
+    function updateCounters(ts) {
+      if (!startTime) startTime = ts;
+      const elapsed = (ts - startTime) / 1000 / 60; // minutos 
+
+      const food  = (elapsed * RATE_FOOD).toFixed(3);
+      const water = Math.floor(elapsed * RATE_WATER).toLocaleString('pt-BR');
+
+      elFood.innerHTML  = food  + '<span class="stat-unit">kg</span>';
+      elWater.innerHTML = water + '<span class="stat-unit">L</span>';
+
+      requestAnimationFrame(updateCounters);
+    }
+
+    requestAnimationFrame(updateCounters);
+  </script>
+
+</body>
+</html>
